@@ -4,6 +4,7 @@ using Bank.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bank.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231223064714_BankDetails")]
+    partial class BankDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,40 +113,7 @@ namespace Bank.Persistance.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Balances");
-                });
-
-            modelBuilder.Entity("Bank.Domain.RefreshToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("ExpiresOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRevoked")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
-
-                    b.ToTable("RefreshTokens");
+                    b.ToTable("Balance");
                 });
 
             modelBuilder.Entity("Bank.Domain.TransactionHistory", b =>
@@ -171,10 +141,10 @@ namespace Bank.Persistance.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("TransactionHistories");
+                    b.ToTable("TransactionHistory");
                 });
 
-            modelBuilder.Entity("Bank.Domain.UserDetail", b =>
+            modelBuilder.Entity("Bank.Domain.UserDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -347,17 +317,6 @@ namespace Bank.Persistance.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Bank.Domain.RefreshToken", b =>
-                {
-                    b.HasOne("Bank.Domain.ApplicationUser", "User")
-                        .WithOne()
-                        .HasForeignKey("Bank.Domain.RefreshToken", "UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Bank.Domain.TransactionHistory", b =>
                 {
                     b.HasOne("Bank.Domain.ApplicationUser", "User")
@@ -369,11 +328,11 @@ namespace Bank.Persistance.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Bank.Domain.UserDetail", b =>
+            modelBuilder.Entity("Bank.Domain.UserDetails", b =>
                 {
                     b.HasOne("Bank.Domain.ApplicationUser", "User")
                         .WithOne()
-                        .HasForeignKey("Bank.Domain.UserDetail", "UserId")
+                        .HasForeignKey("Bank.Domain.UserDetails", "UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

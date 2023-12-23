@@ -1,4 +1,5 @@
 ﻿using Bank.Application.Contracts.Services;
+using Bank.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bank.Service
@@ -9,6 +10,11 @@ namespace Bank.Service
         {
             services.AddScoped<IResponseService, ResponseService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserDetailService, UserDetailService>();
+            services.AddScoped<IBalanceService, BalanceService>();
+            services.AddScoped<ITransactionHistoryService, TranscationHistoryService>();
 
             return services;
         }
