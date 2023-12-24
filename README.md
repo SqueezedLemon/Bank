@@ -17,7 +17,7 @@ To run the project locally, follow these steps:
 
     ```bash
     git clone https://github.com/SqueezedLemon/Bank.git
-    cd bank-account-demo
+    cd bank
     ```
 
 2. Run Entity Framework migration:
