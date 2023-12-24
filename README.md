@@ -36,7 +36,11 @@ The application should now be running locally.
 
 ## Authorization
 
-The project uses JWT bearer tokens and refresh tokens, stored in HTTP-only cookies for secure authorization. For API documentation, refer to the [Postman Documentation](https://documenter.getpostman.com/view/16124553/2s9YkrcLBX).
+The project uses JWT bearer tokens and refresh tokens, stored in HTTP-only cookies for secure authorization. 
+
+## API documentation
+
+For API documentation, refer to the [Postman Documentation](https://documenter.getpostman.com/view/16124553/2s9YkrcLBX).
 
 ## Contributing
 
@@ -48,6 +52,6 @@ This project is not licensed at the moment. You may use it as per your requireme
 
 ## Acknowledgments
 
-Thank you for checking out this Bank Account Demo project! If you have any questions or concerns, feel free to open an issue.
+Thank you for checking out this Bank Account project! If you have any questions or concerns, feel free to open an issue.
 
 Happy coding! 🚀
