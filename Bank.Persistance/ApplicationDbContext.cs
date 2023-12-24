@@ -1,10 +1,12 @@
-﻿using Azure.Core;
-using Bank.Domain;
+﻿using Bank.Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Bank.Persistance
 {
+    /// <summary>
+    /// Class to perform ORM related tasks.
+    /// </summary>
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

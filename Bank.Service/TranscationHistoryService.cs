@@ -2,14 +2,12 @@
 using Bank.Application.Contracts.Services;
 using Bank.Application.DTOs;
 using Bank.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bank.Service
 {
+    /// <summary>
+    /// Services related to transaction history.
+    /// </summary>
     public class TranscationHistoryService : ITransactionHistoryService
     {
         private readonly ITransactionHistoryRepo _transactionHistoryRepo;
@@ -17,6 +15,14 @@ namespace Bank.Service
         {
             _transactionHistoryRepo = transactionHistoryRepo;
         }
+
+        /// <summary>
+        /// Method to add new transaction history in db.
+        /// </summary>
+        /// <param name="transactionDetails"> string </param>
+        /// <param name="transactionAmount"> decimal </param>
+        /// <param name="userId"> string </param>
+        /// <returns> bool </returns>
         public async Task<bool> CreateTransactionHistory(string transactionDetails, decimal transactionAmount, string userId)
         {
             try
@@ -30,6 +36,11 @@ namespace Bank.Service
             }
         }
 
+        /// <summary>
+        /// Method to map list of TransactionHistory to list of TransactionHistoryDto.
+        /// </summary>
+        /// <param name="transactionHistory"> List<TransactionHistory> </param>
+        /// <returns> List<TransactionHistoryDto> </returns>
         public List<TransactionHistoryDto> MapTransactionHistoryListToTransactionHistoryDtoList(List<TransactionHistory> transactionHistory)
         {
             List<TransactionHistoryDto> transactionHistoryDtos = new();
@@ -46,6 +57,13 @@ namespace Bank.Service
             return transactionHistoryDtos;
         }
 
+        /// <summary>
+        /// Private method to create a TransactionHistory object for current time from given parameters.
+        /// </summary>
+        /// <param name="transactionDetails"> string </param>
+        /// <param name="transactionAmount"> decimal </param>
+        /// <param name="userId"> string </param>
+        /// <returns></returns>
         private TransactionHistory CreateTransactionHistoryObject(string transactionDetails, decimal transactionAmount, string userId) 
         {
             TransactionHistory transactionHistory = new() 

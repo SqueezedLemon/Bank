@@ -3,6 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bank.Persistance.Repositories
 {
+    /// <summary>
+    /// Class that perform generic CRUD operations on given T class.
+    /// </summary>
+    /// <typeparam name="T"> T(user entered class) </typeparam>
     public class GenericRepo<T> : IGenericRepo<T> where T : class
     {
         private readonly ApplicationDbContext _dbContext;

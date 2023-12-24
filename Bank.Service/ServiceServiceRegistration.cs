@@ -1,5 +1,4 @@
 ﻿using Bank.Application.Contracts.Services;
-using Bank.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Bank.Service

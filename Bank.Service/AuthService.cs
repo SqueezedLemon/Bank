@@ -9,6 +9,9 @@ using Bank.Application.Contracts.Repositories;
 
 namespace Bank.Service
 {
+    /// <summary>
+    /// Services for AuthController.
+    /// </summary>
     public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -30,6 +33,11 @@ namespace Bank.Service
             _userDetailRepo = userDetailRepo;
         }
 
+        /// <summary>
+        /// Method to register new user using identity RegisterUserAsync method.
+        /// </summary>
+        /// <param name="registerDto"> RegisterDto </param>
+        /// <returns> ServiceResponse<EmptyDto> </returns>
         public async Task<ServiceResponse<EmptyDto>> RegisterUserAsync(RegisterDto registerDto)
         {
             EmptyDto emptyDto = new();
@@ -63,6 +71,12 @@ namespace Bank.Service
             }
         }
 
+        /// <summary>
+        /// Method to generate and store tokens after login.
+        /// </summary>
+        /// <param name="configuration"> IConfiguration </param>
+        /// <param name="loginDto"> LoginDto </param>
+        /// <returns> Tuple<ServiceResponse<TokenDto>, RefreshToken> </returns>
         public async Task<Tuple<ServiceResponse<TokenDto>, RefreshToken>> LoginAsync(IConfiguration configuration, LoginDto loginDto)
         {
             TokenDto tokenDto = new();
@@ -93,6 +107,12 @@ namespace Bank.Service
             }
         }
 
+        /// <summary>
+        /// Method to generate and store new tokens after refreshing tokens.
+        /// </summary>
+        /// <param name="configuration"> IConfiguration </param>
+        /// <param name="loginDto"> LoginDto </param>
+        /// <returns> Tuple<ServiceResponse<TokenDto>, RefreshToken> </returns>
         public async Task<Tuple<ServiceResponse<TokenDto>, RefreshToken>> GetNewTokenAsync(IConfiguration configuration, string refreshToken)
         {
             TokenDto tokenDto = new();

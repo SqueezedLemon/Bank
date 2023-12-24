@@ -1,14 +1,12 @@
 ﻿using Bank.Application.Contracts.Repositories;
 using Bank.Domain;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bank.Persistance.Repositories
 {
+    /// <summary>
+    /// Class that performs CRUD operation on Balance table.
+    /// </summary>
     public class BalanceRepo : GenericRepo<Balance> , IBalanceRepo
     {
         private readonly ApplicationDbContext _dbContext;
@@ -18,6 +16,11 @@ namespace Bank.Persistance.Repositories
             _dbContext = dbContext;
         }
 
+        /// <summary>
+        /// Method to get Balance object from database
+        /// </summary>
+        /// <param name="userId"> string </param>
+        /// <returns> Balance </returns>
         public Task<Balance> GetBalanceObjectOfUser(string userId)
         {
             return _dbContext.Balances.FirstOrDefaultAsync(b => b.UserId == userId);

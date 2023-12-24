@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Bank.Persistance.Repositories
 {
+    /// <summary>
+    /// Class that performs CRUD operations on UserDetails table.
+    /// </summary>
     public class UserDetailRepo : GenericRepo<UserDetail> , IUserDetailRepo
     {
         private readonly ApplicationDbContext _dbContext;

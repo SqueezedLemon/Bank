@@ -1,15 +1,21 @@
 ﻿using Bank.Application.Contracts.Services;
 using Bank.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bank.Service
 {
+    /// <summary>
+    /// Services related to user details.
+    /// </summary>
     public class UserDetailService : IUserDetailService
     {
+        /// <summary>
+        /// method to create a UserDetail object from given parameters.
+        /// </summary>
+        /// <param name="Name"> string </param>
+        /// <param name="CitizenshipNumber"> string </param>
+        /// <param name="Dob"> DateOnly </param>
+        /// <param name="UserId"> string </param>
+        /// <returns> UserDetail </returns>
         public UserDetail CreateUserDetailObject(string Name, string CitizenshipNumber, DateOnly Dob, string UserId)
         {
             UserDetail userDetail = new() 

@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Bank.Service
 {
+    /// <summary>
+    /// Services provided for user controller.
+    /// </summary>
     public class UserService : IUserService
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -27,6 +30,11 @@ namespace Bank.Service
             _transactionHistoryRepo = transactionHistoryRepo;
         }
 
+        /// <summary>
+        /// Method to logout user/revoke refresh token.
+        /// </summary>
+        /// <param name="email"> string </param>
+        /// <returns> ServiceResponse<EmptyDto> </returns>
         public async Task<ServiceResponse<EmptyDto>> LogoutAsync(string email)
         {
             EmptyDto emptyDto = new();
@@ -46,6 +54,12 @@ namespace Bank.Service
             }
         }
 
+        /// <summary>
+        /// Method to deposit amount in user's account and create transaction history.
+        /// </summary>
+        /// <param name="email"> string </param>
+        /// <param name="transactionDto"> TransactionDto </param>
+        /// <returns> ServiceResponse<EmptyDto> </returns>
         public async Task<ServiceResponse<EmptyDto>> DepositAsync(string email, TransactionDto transactionDto)
         {
             EmptyDto emptyDto = new();
@@ -73,6 +87,13 @@ namespace Bank.Service
             }
         }
 
+        /// <summary>
+        /// Method to withdraw amount from user's account and create transaction history.
+        /// Generates 400 badrequest if withdraw amount is greater than bank balance.
+        /// </summary>
+        /// <param name="email"> string </param>
+        /// <param name="transactionDto"> TransactionDto </param>
+        /// <returns> ServiceResponse<EmptyDto> </returns>
         public async Task<ServiceResponse<EmptyDto>> WithdrawAsync(string email, TransactionDto transactionDto)
         {
             EmptyDto emptyDto = new();
@@ -100,6 +121,11 @@ namespace Bank.Service
             }
         }
 
+        /// <summary>
+        /// Method to check current balance of user.
+        /// </summary>
+        /// <param name="email"> string </param>
+        /// <returns> ServiceResponse<BalanceDto> </returns>
         public async Task<ServiceResponse<BalanceDto>> CheckCurrentBalanceAsync(string email)
         {
             BalanceDto balanceDto = new();
@@ -122,6 +148,12 @@ namespace Bank.Service
             }
         }
 
+        /// <summary>
+        /// Method to get all transaction histories after a certain date.
+        /// </summary>
+        /// <param name="email"> string </param>
+        /// <param name="fromDate"> DateTime </param>
+        /// <returns> ServiceResponse<List<TransactionHistoryDto>> </returns>
         public async Task<ServiceResponse<List<TransactionHistoryDto>>> GetTransactionHistoryAsync(string email, DateTime fromDate)
         {
             List<TransactionHistoryDto> transactionHistoryDtos = new();

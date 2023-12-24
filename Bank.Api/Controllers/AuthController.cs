@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Bank.Api.Controllers
 {
+    /// <summary>
+    /// Controller that handles register, login and refreshes tokens.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -18,6 +21,11 @@ namespace Bank.Api.Controllers
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Method to Register new user.
+        /// </summary>
+        /// <param name="registerDto"> RegisterDto </param>
+        /// <returns> StatusCode(code, ServiceResponse<EmptyDto>) </returns>
         [HttpPost]
         [Route("RegisterUser")]
         public async Task<IActionResult> RegisterUser([FromBody] RegisterDto registerDto)
@@ -26,6 +34,11 @@ namespace Bank.Api.Controllers
             return StatusCode(response.Status, response);
         }
 
+        /// <summary>
+        /// Method for logging in.
+        /// </summary>
+        /// <param name="loginDto"> LoginDto </param>
+        /// <returns> StatusCode(code, ServiceResponse<TokenDto>) </returns>
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
@@ -35,6 +48,10 @@ namespace Bank.Api.Controllers
             return StatusCode(response.Item1.Status, response.Item1);
         }
 
+        /// <summary>
+        /// Method For Getting new tokens.
+        /// </summary>
+        /// <returns> StatusCode(code, ServiceResponse<TokenDto>) </returns>
         [HttpGet("GetNewToken")]
         public async Task<IActionResult> GetNewToken()
         {
@@ -44,7 +61,10 @@ namespace Bank.Api.Controllers
             return StatusCode(response.Item1.Status, response.Item1);
         }
 
-
+        /// <summary>
+        /// Private method to append refresh token in cookies.
+        /// </summary>
+        /// <param name="refreshToken"> string </param>
         private void SetRefreshToken(RefreshToken refreshToken)
         {
             if (refreshToken != null)
